@@ -21,3 +21,5 @@ news/region/name/
 /news/videonews - is_videonews(True)
 
 /news/photonews - is_photonews(True)
+
+/news/adviced - is_photonews(True)
