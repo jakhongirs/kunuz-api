@@ -1,8 +1,8 @@
 /news - all news
 
-/news/category/name
+/news/category/name/
 
-
+news/region/name/
 
 /news/main - is_main(True)
 

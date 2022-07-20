@@ -26,6 +26,19 @@ class CategoryNewsView(generics.ListAPIView):
         return queryset
 
 
+class RegionNewsView(generics.ListAPIView):
+    queryset = News.objects.all()
+    serializer_class = NewsSerializer
+    pagination_class = CustomPagination
+
+    def get_queryset(self):
+        queryset = self.queryset
+        if self.kwargs.get('slug_name', None):
+            queryset = queryset.filter(region__slug=self.kwargs['slug_name'])
+
+        return queryset
+
+
 # IS_MAIN:
 class IsMainNewsView(generics.ListAPIView):
     queryset = News.objects.filter(is_main=True)
@@ -85,5 +98,12 @@ class IsVideoNewsView(generics.ListAPIView):
 # IS_PHOTONEWS:
 class IsPhotoNewsView(generics.ListAPIView):
     queryset = News.objects.filter(is_photonews=True)
+    serializer_class = NewsSerializer
+    pagination_class = CustomPagination
+
+
+# IS_ADVICED:
+class IsAdvicedNewsView(generics.ListAPIView):
+    queryset = News.objects.filter(is_adviced=True)
     serializer_class = NewsSerializer
     pagination_class = CustomPagination
